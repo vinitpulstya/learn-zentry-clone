@@ -1,7 +1,7 @@
 const App = () => {
   return (
     <main>
-      <h1 className='text-5xl text-orange-500 font-bold'>Lets make some cool animations!</h1>
+      <h1 className='text-5xl text-violet-300 font-bold'>Lets make some cool animations!</h1>
     </main>
   )
 }
