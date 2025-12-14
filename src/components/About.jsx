@@ -31,7 +31,12 @@ const About = () => {
         <h2 className="font-general text-sm uppercase md:text-[10px]">
           Welcome to Zentry
         </h2>
-		<AnimatedTitle />
+        <AnimatedTitle
+          containerClass="mt-5 !text-black text-center"
+          title={
+            "Disc<b>o</b>ver the world's <br /> l<b>a</b>rgest shared adventure"
+          }
+        />
         <div className="about-subtext">
           <p>The Game of Games beings-your life, now an epic MMORPG</p>
           <p>Zentry unites every player from countless games and platforms</p>
