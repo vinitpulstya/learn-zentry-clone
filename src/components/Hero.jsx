@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
 import { TiLocationArrow } from "react-icons/ti";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import Button from "./Button";
 import VideoPreview from "./VideoPreview";
@@ -12,28 +12,11 @@ gsap.registerPlugin(ScrollTrigger);
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [hasClicked, setHasClicked] = useState(false);
-
   const [loading, setLoading] = useState(true);
-  const [loadedVideos, setLoadedVideos] = useState(0);
-
-  const totalVideos = 4;
+  const [_, setLoadedVideos] = useState(0);
   const nextVdRef = useRef(null);
 
-  const handleVideoLoad = () => {
-    setLoadedVideos((prev) => prev + 1);
-  };
-
-  useEffect(() => {
-    if (loadedVideos === totalVideos - 1) {
-      setLoading(false);
-    }
-  }, [loadedVideos]);
-
-  const handleMiniVdClick = () => {
-    setHasClicked(true);
-
-    setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
-  };
+  const totalVideos = 4;
 
   useGSAP(
     () => {
@@ -79,6 +62,22 @@ const Hero = () => {
       },
     });
   });
+
+  const handleVideoLoad = () => {
+    setLoadedVideos((prev) => {
+      const newSum = prev + 1;
+      if (newSum >= 1 && loading === true) {
+        setLoading(false);
+      }
+      return newSum;
+    });
+  };
+
+  const handleMiniVdClick = () => {
+    setHasClicked(true);
+
+    setCurrentIndex((prevIndex) => (prevIndex % totalVideos) + 1);
+  };
 
   const getVideoSrc = (index) => `videos/hero-${index}.mp4`;
 
